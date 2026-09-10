@@ -1,0 +1,16 @@
+/* Scoped only to the formatted conversation note. */
+.conversation-reading { --file-line-width: 880px; }
+.conversation-reading .markdown-preview-section { line-height: 1.75; }
+.conversation-reading .callout { border-radius: 14px; border: 1px solid rgba(var(--callout-color), .16); padding: 16px 20px; margin: 22px 0; box-shadow: none; }
+.conversation-reading .callout[data-callout="question"] { --callout-color: 55, 116, 183; --callout-icon: lucide-user; }
+.conversation-reading .callout[data-callout="success"] { --callout-color: 49, 128, 108; --callout-icon: lucide-sparkles; }
+.conversation-reading .callout-title { font-size: .85em; letter-spacing: .025em; margin-bottom: 8px; }
+.conversation-reading .callout-content { color: var(--text-normal); }
+.conversation-reading .callout-content > :first-child { margin-top: 0; }
+.conversation-reading .callout-content > :last-child { margin-bottom: 0; }
+.conversation-reading .callout-content h1, .conversation-reading .callout-content h2 { font-size: 1.2em; }
+.conversation-reading pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.conversation-reading .metadata-container { display: none !important; }
+@media (max-width: 600px) { .conversation-reading .callout { padding: 12px 14px; } }
+
+.conversation-reading .inline-title { display: none; }

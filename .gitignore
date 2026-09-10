@@ -1,0 +1,17 @@
+# Python runtime caches
+__pycache__/
+*.py[cod]
+.venv/
+
+# Local configuration and generated artifacts
+.DS_Store
+.env
+.env.*
+!.env.example
+*.sqlite3
+*.sqlite3-*
+*.onnx
+*.onnx_data
+*.zip
+.cache/
+models/

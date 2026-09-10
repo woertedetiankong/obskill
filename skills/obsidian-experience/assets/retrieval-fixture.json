@@ -1,0 +1,22 @@
+{
+  "synthetic": true,
+  "notes": [
+    {"path":"Lessons/Atlas/database.md","metadata":{"type":"lesson","project":"atlas","status":"active","module":"db","path_globs":["src/db/**"],"title":"SQLite 并发写入与事务等待"},"body":"# SQLite 并发写入与事务等待\n多个写入操作互相等待时，设置 PRAGMA busy_timeout = 5000。网络请求放在事务之外，缩短持锁时间，保留事务原子性。这是虚构测试经验，不是生产环境建议。"},
+    {"path":"Lessons/Atlas/obsolete.md","metadata":{"type":"lesson","project":"atlas","status":"superseded","superseded_by":"[[Lessons/Atlas/database]]","title":"S731 写入排队旧方案"},"body":"# S731 写入排队旧方案\n旧笔记曾建议删除 SQLite 锁文件，但已经废弃。遇到数据库写入排队请转到替代经验。"},
+    {"path":"Lessons/Boreal/postgres.md","metadata":{"type":"lesson","project":"boreal","status":"active","title":"PostgreSQL 并发等待"},"body":"# PostgreSQL 并发等待\nBoreal 使用 lock_timeout = 2000ms。它的配置不属于 Atlas 的 SQLite 项目。"},
+    {"path":"Lessons/Atlas/draft.md","metadata":{"type":"lesson","project":"atlas","status":"draft","title":"数据库锁优化待确认"},"body":"# 数据库锁优化待确认\n尚未验证的候选方案，不能作为生效经验使用。"},
+    {"path":"Lessons/global/http.md","metadata":{"type":"lesson","project":"global","status":"active","title":"HTTP 重试与重复扣款"},"body":"# HTTP 重试与重复扣款\n支付请求超时并不意味着服务器没有处理。重新提交可能造成重复收费，使用幂等键识别同一操作，先确认结果再重试。虚构测试材料。"},
+    {"path":"Articles/looped.md","metadata":{"type":"article","title":"Looped Transformers 循环计算"},"body":"# Looped Transformers 循环计算\n同一组网络层重复计算多轮，以增加推理时计算量。共享参数不代表只执行一次，循环次数可以改变推理深度。"},
+    {"path":"Articles/audio.md","metadata":{"type":"article","title":"录音中的环境噪声"},"body":"# 录音中的环境噪声\n在安静房间录制人声，将麦克风远离电脑风扇。吸音材料减少房间回声，录制前检查背景嗡声。"}
+  ],
+  "cases": [
+    {"query":"几个操作互相等着，数据一直写不进去，之前怎么处理的？","recall":true,"project":"atlas","expected_paths":["Lessons/Atlas/database.md"],"forbidden_paths":["Lessons/Boreal/postgres.md","Lessons/Atlas/draft.md","Lessons/Atlas/obsolete.md"]},
+    {"query":"SQLite busy_timeout","recall":true,"project":"atlas","module":"db","path":"src/db/connection.py","expected_paths":["Lessons/Atlas/database.md"]},
+    {"query":"S731 写入排队旧方案","recall":true,"project":"atlas","expected_paths":["Lessons/Atlas/database.md"],"forbidden_paths":["Lessons/Atlas/obsolete.md"]},
+    {"query":"数据库写入等待","recall":true,"project":"boreal","expected_paths":["Lessons/Boreal/postgres.md"],"forbidden_paths":["Lessons/Atlas/database.md"]},
+    {"query":"付款没收到回复，再点一次会不会收两次钱？","recall":true,"project":"atlas","expected_paths":["Lessons/global/http.md"]},
+    {"query":"模型让同一层再想几轮，而不用增加那么多参数","expected_paths":["Articles/looped.md"]},
+    {"query":"说话录进去总有风扇嗡嗡声","expected_paths":["Articles/audio.md"]},
+    {"query":"数据库","recall":true,"project":"atlas","folder":"Lessons/Boreal","expect_empty":true}
+  ]
+}
