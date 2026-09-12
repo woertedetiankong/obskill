@@ -44,6 +44,12 @@ Source metadata remains in YAML properties. Retries reuse unchanged notes/assets
 
 `style` installs [conversation-reading.css](../assets/conversation-reading.css) if absent and enables it in the vault. Only notes with `cssclasses: [conversation-reading]` are styled, including hidden metadata in reading view. Other settings and existing custom CSS are preserved. If `matches_bundled_style` is false, inspect the customization before promising an exact match. Refresh Obsidian's view if it has not noticed the snippet.
 
+### Reading-view verification
+
+Source/editing mode may show literal `>`, `[!success]`, block IDs and table delimiters even when the export is valid. Check the active tab's mode; use its “switch to reading view” control (macOS default Cmd+E) for visual verification, without changing the vault-wide editing preference. When UI access is available, inspect a user/assistant card, a table or code block, a picture and a collapsed environment block in the saved note. If UI switching or inspection is unavailable, explain how to open reading view and report only Markdown/link checks, not verified visual appearance.
+
+Leading `in-app-browser-context` blocks (including attributes) and AGENTS project headers are retained in folded context cards. User requests, quoted examples and exact excerpts must remain unchanged; do not fold an entire mixed message just because it contains environment text. When repairing an existing export, pin its original source prefix and verify the previous rendering matches before replacement; preserve note identity, capture time and attachment paths. Do not produce a second note to bypass an edited-note conflict.
+
 ## Images
 
 Embedded base64/data URIs and local images are copied. Local files must be inside the project, source-log directory, or an explicit `--asset-root "/approved/image/directory"` (repeatable); do not broaden roots to the whole home merely to resolve one image. Missing/unsupported images get a placeholder and details in the command result. HTTP(S) images remain external links, not offline copies. Markdown image references are localized; fenced/inline code examples stay unchanged. No image scripts are executed.

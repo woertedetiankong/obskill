@@ -25,11 +25,11 @@ def context_prefix(text):
     position = 0
     while position < len(text):
         rest = text[position:]
-        header = re.match(r"\s*# AGENTS\.md instructions[^\S\n]*(?:\n|$)", rest)
+        header = re.match(r"\s*# AGENTS\.md instructions(?: for [^\n]+)?[^\S\n]*(?:\n|$)", rest)
         if header:
             position += header.end()
             continue
-        block = re.match(r"\s*<(recommended_plugins|environment_context|skill|skills_instructions|INSTRUCTIONS)>.*?</\1>\s*", rest, re.DOTALL)
+        block = re.match(r"\s*<(recommended_plugins|environment_context|in-app-browser-context|skill|skills_instructions|INSTRUCTIONS)(?:\s+[^<>]*)?>.*?</\1>\s*", rest, re.DOTALL)
         if not block:
             break
         position += block.end()

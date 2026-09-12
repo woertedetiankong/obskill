@@ -437,6 +437,25 @@ class HistoryExportTests(unittest.TestCase):
         self.assertLess(rendered.index("> [!question] 你"), rendered.index("请保存这张图"))
         self.assertNotIn("[!info]", message_card(message, prefix, "codex", collapse_context=False))
 
+    def test_browser_context_attributes_fold_but_request_stays_visible(self):
+        prefix = '<in-app-browser-context source="ambient-ui-state">\n# In app browser:\n- URL: http://localhost:8082/\n</in-app-browser-context>\n\n'
+        request = '## My request:\n请保留 **正文** 和图片 ![图](test.png)'
+        self.assertEqual(context_prefix(prefix + request), (prefix, request))
+        rendered = message_card({"number": 1, "role": "user"}, prefix + request, "codex")
+        collapsed, visible = rendered.split('> [!question]', 1)
+        self.assertIn(prefix, unquote_cards(collapsed))
+        self.assertIn(request, unquote_cards(visible))
+        self.assertNotIn('in-app-browser-context', visible)
+        for text in [request + prefix, '```xml\n' + prefix + '```',
+                     '<in-app-browser-contextual>example</in-app-browser-contextual>',
+                     '<in-app-browser-context source="ambient-ui-state">unclosed']:
+            self.assertEqual(context_prefix(text), ('', text))
+        self.assertNotIn('[!info]', message_card({"number": 1, "role": "assistant"}, prefix, "codex"))
+
+    def test_agents_project_header_does_not_block_context_folding(self):
+        prefix = '# AGENTS.md instructions for /project with spaces\n<INSTRUCTIONS>rules</INSTRUCTIONS>\n'
+        self.assertEqual(context_prefix(prefix + '用户正文'), (prefix, '用户正文'))
+
     def test_style_setup_is_scoped_idempotent_and_preserves_user_settings(self):
         config = self.vault / ".obsidian" / "appearance.json"
         config.parent.mkdir()
