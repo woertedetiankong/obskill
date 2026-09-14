@@ -29,6 +29,14 @@ The helper does not search other folders or automatically repair manually rename
 
 History roots are `~/.codex/sessions` and `~/.claude/projects`, scoped by recorded working directory. `--home` selects another approved home or test fixture. Custom roots, archived/cloud histories, forks and subagent files are not automatically included. Reads stream without a total file-size cap; memory depends on the largest record/image. Invalid JSONL fails without publishing a partial note.
 
+## Requested conversation renames
+
+When the user asks to improve existing filenames, use a short readable `capture date — project — topic` prefix and retain the exact ` -- client-<snapshot16>` suffix required by `snapshot_path`. Use original capture metadata, not today's rename date; if metadata is absent, use evidenced existing capture information and do not invent provenance. Convert a legacy ID filename to the readable pattern using its existing identity. Prefer a concise topic that fits the sidebar; H1 can retain the fuller original title.
+
+Back up affected files outside the vault. Rename the note and its sibling `.assets` directory together; rewrite only live image/link destinations using the old asset directory and incoming navigation links. Preserve YAML, H1, message text, order and asset bytes; do not add aliases or rewrite recorded paths inside conversation text. Verify reversibility of the link-only body changes, all affected image targets and asset hashes. Check `snapshot_path` resolves each original identity to the new canonical note without exporting it again.
+
+Use the original export title for exact retries, not the shortened filename prefix. Older customized exports lacking capture metadata may still report a preserved-content conflict; successful identity lookup does not prove byte-for-byte re-export compatibility. Do not manufacture metadata or publish duplicates to bypass that conflict.
+
 ## Selection and output
 
 Replace `--all` with one of:
