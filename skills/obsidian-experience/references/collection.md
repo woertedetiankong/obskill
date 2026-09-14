@@ -21,11 +21,14 @@ Reuse the chosen vault's current folders. When no category convention exists, us
 | Reusable coding lesson | `Lessons/<established-project-name>/` | `SQLite — 并发写入时避免长事务.md` |
 | Explicit cross-project lesson | `Lessons/global/` | `HTTP — 重试前确认请求幂等性.md` |
 | Article, excerpt or reading note | `Articles/` | `Looped Transformers — 原文摘录.md` |
+| Person/author bookmark or profile | Existing people collection or `People/` | `Sebastian Raschka — AI 与大语言模型博主收藏.md` |
 | Conversation snapshot | `Conversations/` | `2026-09-10 — codetrap — 笔记管理讨论 -- codex-<snapshot>.md` |
 | Editable SVG/HTML companion note | Existing collection or `Works/` | `Looped Transformers — 互动课堂.md` |
 | Non-conversation attachment bundle | Existing attachment location or `Attachments/<work-slug>/` | `looped-transformers/index.html` |
 
 The examples are naming patterns, not facts or active advice to save. Existing root-level works can stay there. Do not create parallel Chinese/English folder trees, date partitions, or elaborate taxonomies by default. Use project subfolders only when project ownership is clear; a source's project does not make its advice globally applicable.
+
+Route by primary purpose: a standalone interactive work's companion belongs in `Works`; an article containing supporting diagrams remains in `Articles`. A person bookmark belongs in `People`, while an article written by that person stays in `Articles` and links to the person page. Keep new ordinary notes out of the root when a suitable category exists. For an authorized reorganization, root-level works may move to `Works`, with their relative attachment links repaired. Existing English folder names can have Chinese explanations on the homepage; do not create duplicate translated folders.
 
 - Put the technology/topic and the concrete problem or purpose in the filename. Avoid `笔记`, `总结`, `未命名`, `final-v2` and identifiers alone. Use one principal subject per lesson; retain a multi-topic original as source material.
 - Evergreen lessons and articles use topic-based names. Conversations/logs use a date because the event matters. The export helper's filename date is the local **capture date**, not a claim about when every message occurred. Keep ordinary revision dates in properties rather than renaming on every edit.
@@ -62,6 +65,15 @@ Search legacy `source`/`captured` and helper `captured_at` fields too. Quote YAM
 4. For a correction, update in place when it is the same lesson. For a distinct approved replacement, link the old and new notes and set `superseded_by` on the old one after the new note is saved. Keep obsolete notes out of recommended actions, while allowing historical search to find them. Repeated source captures are not independent evidence.
 5. Reuse an existing project/topic index when it is part of the collection's normal save workflow. Create a short Markdown index only when several related notes need navigation; list canonical links and one-line descriptions, not copies of their bodies. No one-index-per-note policy or global index rewrite on each save.
 6. A request to organize existing notes authorizes the relevant moves/renames and link repairs. Reread first, inspect incoming links and attachment references, preserve previous titles as aliases when appropriate, and verify the affected links afterward. Ordinary saving does not authorize a vault-wide cleanup. Do not promise that external links/bookmarks will follow a rename.
+
+## Navigation and organization
+
+- Reuse a vault homepage or filing guide. When organization is requested and none exists, create one concise homepage in the user's language: explain folder purposes and link the current notes with readable labels. Record vault-specific choices there rather than hardcoding personal paths or subjects into this shared skill.
+- At small scale, group homepage links by useful topics. Add a dedicated topic page only when the group needs its own explanation or navigation; avoid one index per note. At larger scale, the homepage links to topic/category hubs instead of listing every note. Each note has one canonical location and may appear in several relevant hubs.
+- On saving, update only the relevant established navigation entries with a link and one-line description, preserving hand-written text. Link existing author/topic pages when useful; do not automatically create a concept page for every mentioned term or rewrite unrelated notes. Derived syntheses retain source links and uncertainty; they do not replace source records.
+- Before moving, record old/new paths and preserve a recoverable copy outside the vault. Repair Markdown relative paths from the new parent and path-qualified wikilinks pointing to moved items. Keep unique basename wikilinks when they still resolve. Do not rewrite URLs or quoted historical paths as if they were live navigation. Keep conversation filenames, snapshot bodies and sibling asset bundles intact where navigation labels can solve discoverability.
+- Check local link resolution and compare preserved bodies/attachment hashes after moving. Identify pre-existing missing targets separately from newly broken links; never invent a missing note. A maintenance request may flag duplicates, orphan notes, stale source claims and index gaps, but deleting or rewriting source records is not implied.
+- Refresh retrieval after a save or move, using the retrieval reference. Semantic search is provided by the helper, not automatically by Obsidian's search UI; HTML/PDF/image contents need searchable Markdown descriptions. When assessing scale or improving retrieval, use representative questions about real notes and report observed hits/misses without promising an untested capacity.
 
 ## Finding and using saved content
 

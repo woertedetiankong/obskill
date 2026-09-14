@@ -1,6 +1,6 @@
 ---
 name: obsidian-experience
-description: Save readable, consistently named articles, visual works, conversations and coding lessons to Obsidian. Export conversations or selected text as colored cards with images. Search notes with local semantic or hybrid retrieval and maintain lessons with sources, scope and replacement links.
+description: Save and organize articles, people bookmarks, visual works, conversations and coding lessons in Obsidian with clear folders and navigation. Export conversations as colored cards with images. Search notes with local semantic or hybrid retrieval and maintain lessons with sources, scope and replacement links.
 ---
 
 # Obsidian experience
@@ -14,6 +14,7 @@ For saves, retrieval or requested organization, read [collection conventions](re
 - Reuse the established vault and folder; conversations default to `Conversations`. If unresolved, use `scripts/history.py vaults` to inspect registered paths without reading notes. Use a uniquely matching existing vault; ask by name when several fit, or for a path when none can be resolved.
 - The vault is the saved collection's source of truth. The retrieval helper may maintain a disposable SQLite vector/hash cache outside the vault, fully rebuildable from Markdown. Do not create a separately maintained knowledge collection, background synchronization, or install Obsidian plugins. Conversation styling uses a note-scoped CSS snippet.
 - A request to save selected material authorizes that save. Check for duplicates and preserve existing edits; update or reformat an existing note only within the user's requested scope. Do not create another copy to bypass a conflict.
+- Choose the folder by the note's primary purpose using the collection conventions; topics and authors are navigation links, not reasons to duplicate a note. Read an existing vault homepage or filing guide before selecting a destination. For requested organization, create or improve a compact homepage, move only relevant items, and repair links while preserving source content and conversation exports.
 
 ## Articles and excerpts
 
@@ -21,7 +22,7 @@ Retrieve the supplied article or use the selected text. Honor the requested scop
 
 ## SVG and HTML works
 
-Save the editable source and required local assets together, preserving relative dependencies. Add a short companion note with purpose, source, capture date and attachment links; embed SVG and link HTML for browser opening. Do not substitute a screenshot for source. Preservation does not prove playback: report missing dependencies and whether animation/interactivity was actually checked in Obsidian or a browser. Do not execute untrusted scripts merely to save them.
+Save the editable source and required local assets together, preserving relative dependencies. Add a short companion note with purpose, searchable topic/chapter descriptions, source, capture date and attachment links; embed SVG and link HTML for browser opening. Retrieval searches Markdown, not the contents of HTML, images or PDFs. Do not substitute a screenshot for source. Preservation does not prove playback: report missing dependencies and whether animation/interactivity was actually checked in Obsidian or a browser. Do not execute untrusted scripts merely to save them.
 
 ## Codex and Claude Code conversations
 
@@ -48,3 +49,5 @@ Keep lessons separate from source material. Reuse existing note conventions; new
 ## Verify and report
 
 Read back affected notes and check attachment links; verify unchanged copies match their sources. Check meaningful filenames, searchable metadata and readable structure using the collection conventions. Report saved scope, destination, missing resources and relevant playback checks; distinguish a Markdown structure check from an actual Obsidian visual check. For lesson replacement, verify both notes and report any incomplete update. Do not claim automatic future recall or guaranteed application from a successful save.
+
+After saves, revisions or moves, follow the retrieval reference to refresh the local index when its runtime/model is installed, inspect coverage and report any pending indexing. For organization or retrieval changes, try a realistic user question and inspect the returned notes; a successful example is not a large-vault quality or speed guarantee.
